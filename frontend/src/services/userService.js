@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:7001/api/users';
+const API_BASE = 'https://raisora.onrender.com/api/users';
 
 export async function getProfile(token) {
   const res = await fetch(`${API_BASE}/me`, {

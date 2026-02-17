@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:7001/api/campaigns';
+const API_BASE = 'https://raisora.onrender.com/api/campaigns';
 
 export async function listCampaigns() {
   const res = await fetch(API_BASE);

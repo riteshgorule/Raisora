@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:7001/api/events';
+const API_BASE = 'https://raisora.onrender.com/api/events';
 
 export async function listEvents() {
   const res = await fetch(API_BASE);
