@@ -1,6 +1,6 @@
-# SAP — Frontend + Backend
+# Raisora — Frontend + Backend
 
-This repository contains a small split frontend/backend web app used as a demo/demo-starter for campaigns, events and donations. The project uses a Vite + React frontend and an Express backend with JWT-based authentication.
+This repository contains Raisora, a split frontend/backend web app for campaigns, events, and donations. The project uses a Vite + React frontend and an Express backend with JWT-based authentication.
 
 Repository layout
 - `frontend/` — Vite + React app. Contains UI, routes, auth modal and pages.
@@ -52,6 +52,11 @@ Security note: Never commit `.env` files. `.gitignore` in the repo should exclud
 Auth flow notes
 - The backend exposes endpoints under `/api/auth` for register and login. Login returns a JWT; the frontend stores it in `localStorage` and uses an `AuthContext` to manage modal state and redirects.
 - Register currently does not auto-login by default (the flow opens the login form after successful registration).
+
+Deployment (Vercel)
+- `vercel.json` is configured to build the Vite frontend from `frontend/` using the static build output in `frontend/dist`.
+- The SPA fallback is routed to `index.html` so client-side routing works on refresh.
+- The Express backend is **not** built or deployed by Vercel in this config; deploy it separately (or adapt it to serverless functions) and point the frontend API base URL to that deployment.
 
 Developer notes & conventions
 - Protected pages on the frontend (Dashboard, Donations, Settings) open an auth modal when accessed while unauthenticated. Landing, Campaigns, and Events are browseable without signing in.

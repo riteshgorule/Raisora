@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Donations from './pages/Donations';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Settings from './pages/Settings';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
 
@@ -50,6 +51,14 @@ function AppRoutes() {
 
           <Route path="/campaigns" element={<Campaigns />} />
           <Route path="/events" element={<Events />} />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/dashboard"

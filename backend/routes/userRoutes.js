@@ -1,17 +1,11 @@
 import express from "express";
 import verifyToken from "../middlewares/authMiddleware.js";
-import authorizeRoles from "../middlewares/roleMiddleware.js";
+import { getProfile, updateProfile } from "../controllers/userController.js";
 
 const router = express.Router();
 
-//Only admin can access this rouute
-router.get("/admin", verifyToken, authorizeRoles("admin"), (req,res) => {
-    res.json({message: "Welcome Admin"});
-});
-
-//Both can access this route
-router.get("/user", verifyToken,  authorizeRoles("admin", "user"), (req,res) => {
-    res.json({message: "Welcome User"});
-});
+// Authenticated user profile
+router.get("/me", verifyToken, getProfile);
+router.put("/me", verifyToken, updateProfile);
 
 export default router;

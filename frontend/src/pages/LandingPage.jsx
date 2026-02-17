@@ -165,33 +165,6 @@ const Landing = () => {
     }
   ];
 
-  const teamMembers = [
-    {
-      name: "Sarah Johnson",
-      role: "Founder & CEO",
-      bio: "Former UN advocate with 15+ years in social impact. Passionate about sustainable change.",
-      image: "bg-gradient-to-br from-pink-400 to-pink-600"
-    },
-    {
-      name: "David Chen",
-      role: "Director of Programs",
-      bio: "Community organizer and educator focused on grassroots movements and youth empowerment.",
-      image: "bg-gradient-to-br from-blue-400 to-blue-600"
-    },
-    {
-      name: "Maria Rodriguez",
-      role: "Head of Campaigns",
-      bio: "Digital marketing expert who has led successful awareness campaigns reaching millions.",
-      image: "bg-gradient-to-br from-purple-400 to-purple-600"
-    },
-    {
-      name: "James Williams",
-      role: "Technology Director",
-      bio: "Tech innovator building digital solutions for social good and community engagement.",
-      image: "bg-gradient-to-br from-green-400 to-green-600"
-    }
-  ];
-
   const timelineEvents = [
     {
       year: "2020",
@@ -253,7 +226,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       {/* Stats Section */}
       <section className="py-16 bg-[#f0f3bd]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,29 +365,6 @@ const Landing = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Passionate leaders from diverse backgrounds united by a common goal of creating positive social impact.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="text-center group">
-                <div className={`w-48 h-48 ${member.image} rounded-full mx-auto mb-6 transition-transform duration-300 group-hover:scale-105`}></div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-[#02c39a] font-semibold mb-3">{member.role}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
               </div>
             ))}
           </div>

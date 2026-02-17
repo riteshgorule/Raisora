@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import * as authService from '../services/authService';
+import * as userService from '../services/userService';
 
 const AuthContext = createContext(null);
 
@@ -31,9 +32,8 @@ export const AuthProvider = ({ children }) => {
         setUser({ id: payload.id, role: payload.role });
         (async () => {
           try {
-            const res = await fetch('http://localhost:7001/api/auth/me', { headers: { Authorization: `Bearer ${token}` } });
-            const data = await res.json();
-            if (res.ok && data.user) setUser({ id: data.user.id, role: data.user.role, username: data.user.username });
+            const res = await userService.getProfile(token);
+            if (res?.user) setUser({ id: res.user.id, role: res.user.role, username: res.user.username });
           } catch (err) {
             console.error('Failed to fetch user profile', err);
           }
@@ -84,6 +84,17 @@ export const AuthProvider = ({ children }) => {
   setUser(null);
   };
 
+  const updateProfile = async (payload) => {
+    if (!token) return { ok: false, message: 'Not authenticated' };
+    try {
+      const res = await userService.updateProfile(token, payload);
+      if (res?.user) setUser((prev) => ({ ...prev, ...res.user }));
+      return { ok: true, message: res.message || 'Profile updated', user: res.user };
+    } catch (err) {
+      return { ok: false, message: err.message || 'Failed to update profile' };
+    }
+  };
+
   const openAuthModal = (mode = 'login') => {
     setModalMode(mode);
     setModalOpen(true);
@@ -100,7 +111,7 @@ export const AuthProvider = ({ children }) => {
   const closeAuthModal = () => setModalOpen(false);
 
   return (
-  <AuthContext.Provider value={{ token, user, loading, login, register, logout, modalOpen, modalMode, redirectTo, openAuthModal: openAuthModalWithRedirect, closeAuthModal, clearRedirect }}>
+  <AuthContext.Provider value={{ token, user, loading, login, register, logout, updateProfile, modalOpen, modalMode, redirectTo, openAuthModal: openAuthModalWithRedirect, closeAuthModal, clearRedirect }}>
       {children}
     </AuthContext.Provider>
   );
